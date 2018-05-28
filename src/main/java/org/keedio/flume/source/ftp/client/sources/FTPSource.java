@@ -149,6 +149,17 @@ public class FTPSource extends KeedioSource<FTPFile> {
     }
 
     @Override
+    public boolean rm(FTPFile file) {
+        try {
+            getFtpClient().deleteFile(getWorkingDirectory() + "/" + file.getName());
+        } catch (IOException e) {
+            LOGGER.error("", e);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
     /**
      * @param FTPFile
      * @return boolean

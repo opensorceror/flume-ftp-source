@@ -231,6 +231,17 @@ public class SFTPSource extends KeedioSource<ChannelSftp.LsEntry> {
     }
 
     @Override
+    public boolean rm(ChannelSftp.LsEntry file) {
+        try {
+            getSftpClient().rm(getWorkingDirectory() + "/" + getObjectName(file));
+        } catch (SftpException e) {
+            LOGGER.error("", e);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
     /**
      * @return boolean
      * @param Object to check

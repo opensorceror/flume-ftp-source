@@ -28,7 +28,7 @@ public class SourceFactory {
     private static final boolean PROCESSINUSE = true;
     private static final Integer PROCESSINUSE_TIMEOUT = 60;
     private static final String FILE_COMPRESSION_FORMAT = null;
-    
+    private static final boolean DELETE_ON_COMPLETION_DEFAULT = false;
 
     /**
      * Create KeedioSource
@@ -102,6 +102,7 @@ public class SourceFactory {
         keedioSource.setProcessInUse(context.getBoolean("search.processInUse", PROCESSINUSE));
         keedioSource.setProcessInUseTimeout(context.getInteger("search.processInUseTimeout", PROCESSINUSE_TIMEOUT));
         keedioSource.setFileCompressed(context.getString("compressed", FILE_COMPRESSION_FORMAT));
+        keedioSource.setDeleteOnCompletion(context.getBoolean("deleteOnCompletion", DELETE_ON_COMPLETION_DEFAULT));
     }
 
 }

@@ -256,6 +256,14 @@ public class Source extends AbstractSource implements Configurable, PollableSour
               LOGGER
                 .info("Processed:  " + elementName + ", total files: " + this.keedioSource.getFileList().size() + "\n");
 
+              // If deleteOnCompletion is true, delete file
+              if(keedioSource.isDeleteOnCompletion()) {
+                LOGGER.info("Removing file " + elementName);
+                if(!this.keedioSource.rm(element)) { throw new IOException("Could not delete file: " +
+                        elementName); }
+                LOGGER.info("File " + elementName + " removed.");
+              }
+
             } else {
               handleProcessError(elementName);
             }

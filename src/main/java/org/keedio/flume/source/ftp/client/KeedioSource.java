@@ -131,10 +131,15 @@ public abstract class KeedioSource<T> {
      */
     protected Integer chunkSize;
 
-  /**
-   *
-   */
-  private String keedioFilterRegex;
+    /**
+     *
+     */
+    private String keedioFilterRegex;
+
+    /**
+     *
+     */
+    private boolean deleteOnCompletion;
    
     /**
      *
@@ -183,6 +188,13 @@ public abstract class KeedioSource<T> {
      * @return
      */
     public abstract boolean isDirectory(T file);
+
+    /**
+     *
+     * @param file
+     * @return
+     */
+    public abstract boolean rm(T file);
 
     /**
      *
@@ -626,6 +638,12 @@ public abstract class KeedioSource<T> {
         this.compressionFormat = compressionFormat.toLowerCase().trim();
       }
     }
+
+    public void setDeleteOnCompletion(boolean deleteOnCompletion) {
+      this.deleteOnCompletion = deleteOnCompletion;
+    }
+
+    public boolean isDeleteOnCompletion() { return deleteOnCompletion; }
 
     public String getCompressionFormat() { return compressionFormat; }
 } //endclass

@@ -225,6 +225,9 @@ public class KeedioSourceTest extends TestCase {
             return false;
         }
 
+        @Override
+        public boolean rm(Object file) { return false; }
+
         public boolean isFile(Object file) {
             return false;
         }
